@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kustrica Developer</title>
+<style>
+:root {
+  --text-xs:clamp(0.75rem,0.7rem + 0.25vw,0.875rem);
+  --text-sm:clamp(0.875rem,0.8rem + 0.35vw,1rem);
+  --text-base:clamp(1rem,0.95rem + 0.25vw,1.125rem);
+  --text-2xl:clamp(1.7rem,1rem + 3vw,3.2rem);
+  --sp1:.25rem;--sp2:.5rem;--sp3:.75rem;--sp4:1rem;--sp5:1.25rem;--sp6:1.5rem;
+  --sp8:2rem;--sp10:2.5rem;--sp12:3rem;--sp16:4rem;--sp20:5rem;
+  --r-sm:.375rem;--r-md:.5rem;--r-lg:.75rem;--r-xl:1rem;--r-2xl:1.5rem;--r-full:9999px;
+  --ease:180ms cubic-bezier(0.16,1,0.3,1);
+  --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --mono:var(--font);
+}
+[data-theme="dark"]{
+  --bg:#0f0f0e;--sur:#161614;--sur2:#1d1c1a;
+  --div:#2c2b28;--bor:#363532;
+  --tx:#d6d4d0;--txm:#7c7a77;--txf:#4a4846;
+  --pri:#50979f;--pri-dim:#1d3035;
+  --sh:0 12px 48px oklch(0 0 0/.55);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth;}
+body{
+  min-height:100dvh;font-family:var(--font);font-size:var(--text-base);
+  color:var(--tx);background:var(--bg);line-height:1.65;
+  display:flex;flex-direction:column;align-items:center;
+}
+img{display:block;max-width:100%;height:auto;}
+a{color:inherit;text-decoration:none;}
+a:hover{opacity:.75;}
+::selection{background:oklch(from var(--pri) l c h/.25);}
+
+.page{
+  width:100%;max-width:1100px; 
+  padding:var(--sp16) var(--sp8) var(--sp20);
+  display:flex;flex-direction:column;align-items:center;gap:var(--sp10); 
+}
+
+/* HERO */
+.hero{display:flex;flex-direction:column;align-items:center;gap:var(--sp5);text-align:center;}
+.hero-title{
+  font-size:var(--text-2xl);font-weight:700;letter-spacing:-.03em;line-height:1.1;
+  background:linear-gradient(90deg,#d6d4d0 0%,#50979f 55%,#8ec9cf 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  white-space:nowrap;
+}
+.langs{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:var(--sp3);}
+.lang-item{display:flex;align-items:center;gap:var(--sp2);font-size:var(--text-sm);color:var(--txm);}
+.lang-item img{height:1.25em;width:auto;border-radius:2px;flex-shrink:0;vertical-align:middle;}
+.lang-sep{color:var(--txf);user-select:none;}
+
+.desc-lines{display:flex;flex-direction:column;align-items:center;gap:var(--sp2);}
+.desc-line{
+  display:flex;align-items:center;justify-content:center;gap:var(--sp2);
+  font-size:var(--text-sm);color:var(--txm);
+  text-align:center;line-height:1.55;
+  white-space:nowrap; 
+}
+.desc-line img{height:1.35em;width:auto;flex-shrink:0;border-radius:2px;vertical-align:middle;}
+
+.pill{
+  display:inline-flex;align-items:center;gap:var(--sp2);
+  padding:var(--sp1) var(--sp5);border-radius:var(--r-full);
+  border:1px solid var(--bor);background:var(--sur);
+  font-family:var(--mono);font-size:var(--text-xs);color:var(--txf);
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--txf);flex-shrink:0;}
+
+.contacts{display:flex;gap:var(--sp3);flex-wrap:wrap;justify-content:center;}
+.cbtn{
+  display:flex;align-items:center;gap:var(--sp2);
+  padding:var(--sp2) var(--sp4);border-radius:var(--r-lg);
+  border:1px solid var(--bor);background:var(--sur);
+  font-size:var(--text-sm);font-weight:500;color:var(--txm);
+  transition:color var(--ease),border-color var(--ease),background var(--ease);
+}
+.cbtn:hover{color:var(--tx);border-color:var(--pri);background:var(--pri-dim);opacity:1;}
+.cbtn img{width:20px;height:20px;border-radius:4px;}
+
+/* SECTION */
+.section{width:100%;display:flex;flex-direction:column;align-items:center;gap:var(--sp6);}
+
+/* ICONS */
+.icons{display:flex;flex-wrap:wrap;gap:var(--sp3);justify-content:center;align-items:flex-start;}
+.icon{display:flex;flex-direction:column;align-items:center;gap:var(--sp1);}
+.icon img{border-radius:var(--r-md);filter:brightness(.88);
+  transition:transform var(--ease),filter var(--ease);}
+.icon img:hover{transform:translateY(-4px);filter:brightness(1.1);}
+.ilabel{font-family:var(--mono);font-size:.58rem;color:var(--txf);text-align:center;}
+
+/* GIF */
+.gif-wrap{width:100%;display:flex;justify-content:center;}
+.gif-card{
+  border-radius:var(--r-2xl);overflow:hidden;
+  border:1px solid var(--bor);box-shadow:var(--sh);
+  max-width:420px;width:100%;line-height:0;
+}
+.gif-card img{width:100%;height:auto;object-fit:contain;display:block;}
+
+/* SUPPORT */
+.sup-row{display:flex;align-items:center;gap:var(--sp4);flex-wrap:wrap;justify-content:center;}
+.sup-row img.emoji{height:36px;width:auto;}
+.sup-btns{display:flex;gap:var(--sp3);flex-wrap:wrap;justify-content:center;}
+.sbtn{
+  display:flex;align-items:center;gap:var(--sp3);
+  padding:var(--sp2) var(--sp5);border-radius:var(--r-lg);
+  border:1px solid var(--bor);background:var(--sur);
+  font-size:var(--text-sm);font-weight:500;color:var(--txm);
+  transition:color var(--ease),border-color var(--ease),background var(--ease),transform var(--ease);
+}
+.sbtn:hover{color:var(--tx);border-color:var(--pri);background:var(--pri-dim);transform:translateY(-2px);opacity:1;}
+.sbtn svg, .sup-icon{flex-shrink:0; transition: filter var(--ease);}
+.sbtn:hover .sup-icon{filter: brightness(1.5) sepia(1) hue-rotate(140deg) saturate(3);}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease;}
+.fade.in{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none;}}
+@media(max-width:800px){
+  .page{padding:var(--sp10) var(--sp4) var(--sp16);}
+  .hero-title{white-space:normal;}
+  .desc-line{white-space:normal;} 
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Hero -->
+  <section class="hero fade">
+    <h1 class="hero-title">Code – Design – Music – GameDev</h1>
+    <div class="langs">
+      <span class="lang-item">
+        <img src="https://cdn.7tv.app/emote/01FSZ7MYJR0000NBFRTNYTA1A9/1x.avif" alt="English"/>
+        English – B2
+      </span>
+      <span class="lang-sep">|</span>
+      <span class="lang-item">
+        <img src="https://cdn.7tv.app/emote/01GBDNFDPR0001RAQMJBWFVAN3/1x.avif" alt="Russian"/>
+        Russian – Native
+      </span>
+      <span class="lang-sep">|</span>
+      <span class="lang-item">
+        <img src="https://cdn.7tv.app/emote/01GSJAN8VG000E5C0S8C5RTPRQ/1x.avif" alt="Belarusian"/>
+        Belarusian – Native
+      </span>
+    </div>
+    <div class="desc-lines">
+      <p class="desc-line">
+        <img src="https://cdn.7tv.app/emote/01GX6M9TRR000DJJ63WGMEA4Z8/1x.avif" alt="" loading="lazy"/>
+        Software developer building desktop applications, web tools, backend services and indie games with Unreal Engine
+      </p>
+      <p class="desc-line">
+        <img src="https://cdn.7tv.app/emote/01F6MCX6RR0000WDA7ERT4J465/1x.avif" alt="" loading="lazy"/>
+        Currently working on a desktop video processing tool using React, FastAPI and Electron
+      </p>
+    </div>
+    <div class="pill"><span class="dot"></span>Portfolio — coming soon</div>
+    <div class="contacts">
+      <a href="https://t.me/kustric" target="_blank" rel="noopener noreferrer" class="cbtn">
+        <img src="https://raw.githubusercontent.com/CLorant/readme-social-icons/main/large/filled/telegram.svg" alt="Telegram"/>Telegram
+      </a>
+      <a href="mailto:laixdanik@gmail.com" class="cbtn">
+        <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/gmail/default.svg" alt="Gmail"/>Gmail
+      </a>
+      <a href="https://www.linkedin.com/in/kustrica" target="_blank" rel="noopener noreferrer" class="cbtn">
+        <img src="https://raw.githubusercontent.com/CLorant/readme-social-icons/main/large/filled/linkedin.svg" alt="LinkedIn"/>LinkedIn
+      </a>
+      <a href="https://soundcloud.com/luflexia" target="_blank" rel="noopener noreferrer" class="cbtn">
+        <img src="https://cdn.simpleicons.org/soundcloud/ff5500" alt="SoundCloud"/>SoundCloud
+      </a>
+    </div>
+  </section>
+
+  <!-- Software Stack -->
+  <section class="section fade">
+    <div class="icons">
+      <div class="icon"><img src="https://skillicons.dev/icons?i=unreal" height="40" alt="Unreal" loading="lazy"/><span class="ilabel">Unreal</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=ableton" height="40" alt="Ableton" loading="lazy"/><span class="ilabel">Ableton</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=arduino" height="40" alt="Arduino" loading="lazy"/><span class="ilabel">Arduino</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=ae" height="40" alt="After Effects" loading="lazy"/><span class="ilabel">After Effects</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=au" height="40" alt="Audition" loading="lazy"/><span class="ilabel">Audition</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=ai" height="40" alt="Illustrator" loading="lazy"/><span class="ilabel">Illustrator</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=ps" height="40" alt="Photoshop" loading="lazy"/><span class="ilabel">Photoshop</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=pr" height="40" alt="Premiere" loading="lazy"/><span class="ilabel">Premiere</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=autocad" height="40" alt="AutoCAD" loading="lazy"/><span class="ilabel">AutoCAD</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=figma" height="40" alt="Figma" loading="lazy"/><span class="ilabel">Figma</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=git" height="40" alt="Git" loading="lazy"/><span class="ilabel">Git</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=github" height="40" alt="GitHub" loading="lazy"/><span class="ilabel">GitHub</span></div>
+    </div>
+  </section>
+
+  <!-- Core Languages -->
+  <section class="section fade">
+    <div class="icons">
+      <div class="icon"><img src="https://skillicons.dev/icons?i=py" height="48" alt="Python" loading="lazy"/><span class="ilabel">Python</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=c" height="48" alt="C" loading="lazy"/><span class="ilabel">C</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=cpp" height="48" alt="C++" loading="lazy"/><span class="ilabel">C++</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=cs" height="48" alt="C#" loading="lazy"/><span class="ilabel">C#</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=java" height="48" alt="Java" loading="lazy"/><span class="ilabel">Java</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=kotlin" height="48" alt="Kotlin" loading="lazy"/><span class="ilabel">Kotlin</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=html" height="48" alt="HTML" loading="lazy"/><span class="ilabel">HTML</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=php" height="48" alt="PHP" loading="lazy"/><span class="ilabel">PHP</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=js" height="48" alt="JS" loading="lazy"/><span class="ilabel">JS</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=ts" height="48" alt="TS" loading="lazy"/><span class="ilabel">TS</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=tailwind" height="48" alt="Tailwind" loading="lazy"/><span class="ilabel">Tailwind</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=css" height="48" alt="CSS" loading="lazy"/><span class="ilabel">CSS</span></div>
+    </div>
+  </section>
+
+  <!-- Frameworks -->
+  <section class="section fade">
+    <div class="icons">
+      <div class="icon"><img src="https://skillicons.dev/icons?i=react" height="40" alt="React" loading="lazy"/><span class="ilabel">React</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=vite" height="40" alt="Vite" loading="lazy"/><span class="ilabel">Vite</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=vue" height="40" alt="Vue" loading="lazy"/><span class="ilabel">Vue</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=electron" height="40" alt="Electron" loading="lazy"/><span class="ilabel">Electron</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=docker" height="40" alt="Docker" loading="lazy"/><span class="ilabel">Docker</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=fastapi" height="40" alt="FastAPI" loading="lazy"/><span class="ilabel">FastAPI</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=spring" height="40" alt="Spring" loading="lazy"/><span class="ilabel">Spring</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=sqlite" height="40" alt="SQLite" loading="lazy"/><span class="ilabel">SQLite</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=postgres" height="40" alt="Postgres" loading="lazy"/><span class="ilabel">Postgres</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=postman" height="40" alt="Postman" loading="lazy"/><span class="ilabel">Postman</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=androidstudio" height="40" alt="Android" loading="lazy"/><span class="ilabel">Android</span></div>
+      <div class="icon"><img src="https://skillicons.dev/icons?i=wordpress" height="40" alt="WordPress" loading="lazy"/><span class="ilabel">WordPress</span></div>
+    </div>
+  </section>
+
+  <!-- GIF -->
+  <section class="gif-wrap fade">
+    <div class="gif-card">
+      <img
+        src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHBzMW9ocHZlamV3YWZicHU0NmM1d2U5YzJxdDFraW95NGo5aW1rcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9413uBuyBIBi3PWekt/giphy.gif"
+        alt="Animated cat"
+        width="420"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </section>
+
+  <!-- Support -->
+  <section class="section fade">
+    <div class="sup-row">
+      <img class="emoji" src="https://cdn.7tv.app/emote/01J244ERJG000A78Z503AX8PTC/4x.avif" alt="" loading="lazy"/>
+      <div class="sup-btns">
+        <a href="https://ko-fi.com/kustrica" target="_blank" rel="noopener noreferrer" class="sbtn">
+          <img src="https://cdn.simpleicons.org/kofi/7c7a77" alt="Ko-fi" width="20" height="20" class="sup-icon"/>
+          Ko-fi
+        </a>
+        <a href="https://www.patreon.com/c/Kustrica" target="_blank" rel="noopener noreferrer" class="sbtn">
+          <img src="https://cdn.simpleicons.org/patreon/7c7a77" alt="Patreon" width="20" height="20" class="sup-icon"/>
+          Patreon
+        </a>
+        <a href="https://boosty.to/kustrica" target="_blank" rel="noopener noreferrer" class="sbtn">
+          <img src="https://cdn.simpleicons.org/boosty/7c7a77" alt="Boosty" width="20" height="20" class="sup-icon"/>
+          Boosty
+        </a>
+      </div>
+      <img class="emoji" src="https://cdn.7tv.app/emote/01J244ERJG000A78Z503AX8PTC/4x.avif" alt="" loading="lazy"/>
+    </div>
+  </section>
+
+</div>
+<script>
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
+},{threshold:.06});
+document.querySelectorAll('.fade').forEach((el,i)=>{el.style.transitionDelay=i*.07+'s';obs.observe(el);});
+</script>
+</body>
+</html>
